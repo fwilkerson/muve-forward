@@ -1,24 +1,14 @@
 const {resolve} = require('path');
+const MinifyPlugin = require('babel-minify-webpack-plugin');
 
 module.exports = {
   entry: resolve(__dirname, 'src', 'main.js'),
 
+  devtool: 'source-map',
+
   output: {
-    filename: 'static/js/bundle.js',
-    path: resolve(__dirname, 'public'),
-    publicPath: '/',
-  },
-
-  context: resolve(__dirname, 'src'),
-
-  devtool: 'inline-source-maps',
-
-  devServer: {
-    contentBase: resolve(__dirname, 'public'),
-    historyApiFallback: {
-      disableDotRules: true,
-    },
-    publicPath: '/',
+    filename: 'bundle.js',
+    path: resolve(__dirname, 'public', 'static', 'js'),
   },
 
   module: {
@@ -39,4 +29,6 @@ module.exports = {
       },
     ],
   },
+
+  plugins: [new MinifyPlugin()],
 };
