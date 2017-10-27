@@ -57,3 +57,10 @@ typings/
 # dotenv environment variables file
 .env
 
+# build files
+public/**/*.js
+public/**/*.js.map
+public/index.html
+
+# editor files
+.vscode

@@ -1,0 +1,21 @@
+{
+  "short_name": "MuveFirst",
+  "name": "Muve First",
+  "start_url": "/?utm_source=homescreen",
+  "icons": [
+    {
+      "src": "/images/favicon.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/images/icon.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "background_color": "whitesmoke",
+  "theme_color": "#ffffff",
+  "display": "standalone",
+  "orientation": "portrait"
+}
