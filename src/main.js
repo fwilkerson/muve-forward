@@ -55,7 +55,7 @@ const Header = props => (
 
 const Loading = props => (
   <div style={styles.loadingContainer}>
-    <span class="icon is-large has-text-primary">
+    <span class="icon is-large has-text-info">
       <i class="fa fa-spinner fa-3x fa-pulse" />
     </span>
   </div>
