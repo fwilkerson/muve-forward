@@ -18,10 +18,14 @@ const styles = {
 };
 
 const getLinkClasses = x =>
-  `navbar-item ${x ? 'has-text-weight-semibold has-text-primary' : ''}`;
+  `navbar-item ${x ? 'has-text-weight-semibold' : 'has-text-light'}`;
 
 const Header = props => (
-  <nav class="navbar has-shadow" role="navigation" aria-label="main navigation">
+  <nav
+    class="navbar is-info has-shadow"
+    role="navigation"
+    aria-label="main navigation"
+  >
     <div class="container">
       <div class="navbar-brand">
         <a
