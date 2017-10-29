@@ -5,9 +5,6 @@
   "repository": "https://github.com/fwilkerson/muve-forward.git",
   "license": "MIT",
   "dependencies": {
-    "compression": "^1.7.1",
-    "express": "^4.16.2",
-    "helmet": "^3.9.0",
     "muve": "^1.0.0"
   },
   "devDependencies": {
