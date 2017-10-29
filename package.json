@@ -1,8 +1,8 @@
 {
-  "name": "muve-first",
+  "name": "muve-forward",
   "version": "1.0.0",
   "main": "src/main.js",
-  "repository": "https://github.com/fwilkerson/muve-first.git",
+  "repository": "https://github.com/fwilkerson/muve-forward.git",
   "license": "MIT",
   "dependencies": {
     "compression": "^1.7.1",
