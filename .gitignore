@@ -58,7 +58,8 @@ typings/
 .env
 
 # build files
-/build
+build
+server.js
 
 # editor files
 .vscode
