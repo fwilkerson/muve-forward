@@ -1,12 +1,8 @@
 import {h} from 'muve';
 
-const Layout = props => (
-  <section class="hero is-large">
-    <div class="hero-body">
-      <div class="container">{props.children}</div>
-    </div>
-  </section>
-);
+import {Layout} from '../components';
+
+/* View */
 
 const home = model => (
   <Layout>

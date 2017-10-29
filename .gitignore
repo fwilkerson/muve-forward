@@ -58,9 +58,7 @@ typings/
 .env
 
 # build files
-public/**/*.js
-public/**/*.js.map
-public/index.html
+/build
 
 # editor files
 .vscode

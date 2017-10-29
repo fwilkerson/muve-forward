@@ -1,6 +1,11 @@
-const {resolve} = require('path');
-const MinifyPlugin = require('babel-minify-webpack-plugin');
+const {join, resolve} = require('path');
+
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
+const MinifyPlugin = require('babel-minify-webpack-plugin');
+const webpack = require('webpack');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 const rootDir = resolve(__dirname, '..');
 
@@ -10,9 +15,9 @@ module.exports = {
   devtool: 'source-map',
 
   output: {
-    filename: '[name].bundle.js',
-    chunkFilename: '[name].bundle.js',
-    path: resolve(rootDir, 'public'),
+    filename: '[name].[chunkhash].bundle.js',
+    chunkFilename: '[name].[chunkhash].chunk.js',
+    path: resolve(rootDir, 'build'),
   },
 
   module: {
@@ -37,9 +42,18 @@ module.exports = {
   },
 
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production'),
+      },
+    }),
+    new CleanWebpackPlugin(['build'], {root: rootDir}),
+    new CopyWebpackPlugin([
+      {from: resolve(rootDir, 'public'), to: resolve(rootDir, 'build')},
+    ]),
     new MinifyPlugin(),
     new HTMLWebpackPlugin({
-      filename: resolve(rootDir, 'public', 'index.html'),
+      filename: resolve(rootDir, 'build', 'index.html'),
       template: resolve(rootDir, 'src', 'index.html'),
       minify: {
         removeAttributeQuotes: true,
@@ -49,6 +63,11 @@ module.exports = {
         removeComments: true,
         removeEmptyAttributes: true,
       },
+    }),
+    new WorkboxPlugin({
+      globDirectory: resolve(rootDir, 'build'),
+      globPatterns: ['**/*.{html,js,css}'],
+      swDest: join(resolve(rootDir, 'build'), 'sw.js'),
     }),
   ],
 };

@@ -1,4 +1,6 @@
 const {resolve} = require('path');
+
+const CopyWebpackPLugin = require('copy-webpack-plugin');
 const HTMLWebpackPLugin = require('html-webpack-plugin');
 
 const rootDir = resolve(__dirname, '..');
@@ -7,8 +9,8 @@ module.exports = {
   entry: resolve(rootDir, 'src', 'main.js'),
 
   output: {
-    filename: '[name].bundle.js',
-    chunkFilename: '[name].bundle.js',
+    filename: '[name].[chunkhash].bundle.js',
+    chunkFilename: '[name].[chunkhash].chunk.js',
     path: resolve(rootDir, 'dist'),
     publicPath: '/',
   },
@@ -47,7 +49,11 @@ module.exports = {
   },
 
   plugins: [
+    new CopyWebpackPLugin([
+      {from: resolve(rootDir, 'public'), to: resolve(rootDir, 'dist')},
+    ]),
     new HTMLWebpackPLugin({
+      favicon: resolve(rootDir, 'public', 'images', 'favicon.png'),
       template: resolve(rootDir, 'src', 'index.html'),
     }),
   ],
