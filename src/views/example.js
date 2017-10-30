@@ -31,7 +31,7 @@ const Content = props => [
 
 const example = model => (
   <Layout>
-    <Content counter={model.counter} message={model.message} />
+    <Content counter={model.counter} />
   </Layout>
 );
 
