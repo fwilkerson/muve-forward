@@ -1,11 +1,13 @@
 const {resolve} = require('path');
 
-const CopyWebpackPLugin = require('copy-webpack-plugin');
-const HTMLWebpackPLugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
 
 const rootDir = resolve(__dirname, '..');
 
 module.exports = {
+  mode: 'development',
+  
   entry: resolve(rootDir, 'src', 'main.js'),
 
   output: {
@@ -49,10 +51,10 @@ module.exports = {
   },
 
   plugins: [
-    new CopyWebpackPLugin([
+    new CopyWebpackPlugin([
       {from: resolve(rootDir, 'public'), to: resolve(rootDir, 'dist')},
     ]),
-    new HTMLWebpackPLugin({
+    new HTMLWebpackPlugin({
       favicon: resolve(rootDir, 'public', 'images', 'favicon.png'),
       template: resolve(rootDir, 'src', 'index.html'),
     }),

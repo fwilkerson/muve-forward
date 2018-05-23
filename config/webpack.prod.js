@@ -4,15 +4,14 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const MinifyPlugin = require('babel-minify-webpack-plugin');
-const webpack = require('webpack');
-const WorkboxPlugin = require('workbox-webpack-plugin');
+const {GenerateSW} = require('workbox-webpack-plugin');
 
 const rootDir = resolve(__dirname, '..');
 
 module.exports = {
-  entry: resolve(rootDir, 'src', 'main.js'),
+  mode: 'production',
 
-  devtool: 'source-map',
+  entry: resolve(rootDir, 'src', 'main.js'),
 
   output: {
     filename: '[name].[chunkhash].bundle.js',
@@ -42,11 +41,6 @@ module.exports = {
   },
 
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('production'),
-      },
-    }),
     new CleanWebpackPlugin(['build'], {root: rootDir}),
     new CopyWebpackPlugin([
       {from: resolve(rootDir, 'public'), to: resolve(rootDir, 'build')},
@@ -64,7 +58,7 @@ module.exports = {
         removeEmptyAttributes: true,
       },
     }),
-    new WorkboxPlugin({
+    new GenerateSW({
       globDirectory: resolve(rootDir, 'build'),
       globPatterns: ['**/*.{html,js,css}'],
       swDest: join(resolve(rootDir, 'build'), 'sw.js'),
