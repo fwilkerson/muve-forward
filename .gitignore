@@ -59,7 +59,6 @@ typings/
 
 # build files
 build
-server.js
 
 # editor files
 .vscode
